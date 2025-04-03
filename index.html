@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Question for Natalia</title>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap');
+        
+        :root {
+            --primary-color: #ff6b81;
+            --secondary-color: #ff4757;
+            --accent-color: #ffd700;
+            --white: #ffffff;
+            --light-pink: #ffecef;
+            --dark-pink: #ff365f;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--primary-color) 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease;
+        }
+        
+        .heart-animation {
+            display: inline-block;
+            animation: heartbeat 1.5s infinite;
+            margin: 0 10px;
+            color: var(--dark-pink);
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-pink);
+            text-align: center;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        
+        /* Our Story Section */
+        .our-story {
+            margin-bottom: 50px;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--accent-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 4px;
+        }
+        
+        .milestone {
+            position: relative;
+            width: 45%;
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .milestone:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .milestone::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: var(--white);
+            border: 4px solid var(--accent-color);
+            border-radius: 50%;
+            top: 20px;
+            right: -13px;
+            z-index: 1;
+        }
+        
+        .milestone.left {
+            left: 0;
+        }
+        
+        .milestone.right {
+            left: 55%;
+        }
+        
+        .milestone.right::after {
+            left: -13px;
+        }
+        
+        .milestone-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        .milestone-title i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .milestone-content {
+            font-size: 0.95rem;
+        }
+        
+        /* Love Quotes Section */
+        .love-quotes {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 2s ease;
+        }
+        
+        .quote-container {
+            position: relative;
+            text-align: center;
+            padding: 30px;
+            margin-bottom: 20px;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            background-color: var(--white);
+        }
+        
+        .quote {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: var(--dark-pink);
+            font-weight: 500;
+        }
+        
+        .quote-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .quote-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 71, 87, 0.3);
+        }
+        
+        .quote-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .quote-action-btn {
+            display: flex;
+            align-items: center;
+            background-color: var(--white);
+            color: var(--secondary-color);
+            border: 2px solid var(--primary-color);
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .quote-action-btn i {
+            margin-right: 6px;
+            font-size: 1.1rem;
+        }
+        
+        .quote-action-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 71, 87, 0.2);
+        }
+        
+        /* Final Section - Proposal */
+        .proposal {
+            text-align: center;
+            margin: 50px 0;
+            animation: fadeIn 2.5s ease;
+        }
+        
+        .proposal-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+        }
+        
+        .proposal-btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: linear-gradient(to right, var(--secondary-color), var(--dark-pink));
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+        }
+        
+        .proposal-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 7px 20px rgba(255, 71, 87, 0.5);
+        }
+        
+        .answer-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            flex-wrap: wrap;
+        }
+        
+        .answer-btn {
+            padding: 12px 35px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .yes-btn {
+            background-color: #4cd964;
+            color: var(--white);
+            border: none;
+            animation: pulse 2s infinite;
+        }
+        
+        .no-btn {
+            background-color: var(--white);
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .answer-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .yes-btn:hover {
+            background-color: #43c558;
+            box-shadow: 0 5px 15px rgba(76, 217, 100, 0.4);
+        }
+        
+        .no-btn:hover {
+            background-color: #fff1f3;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            margin-top: 50px;
+        }
+        
+        .footer-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(76, 217, 100, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(76, 217, 100, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(76, 217, 100, 0); }
+        }
+        
+        /* Response Animation */
+        .hidden {
+            display: none;
+        }
+        
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        
+        .celebration.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .celebration-content {
+            text-align: center;
+            color: var(--white);
+            animation: scaleIn 0.5s ease forwards;
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .celebration h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .heart {
+            position: absolute;
+            bottom: -100px;
+            font-size: 20px;
+            color: var(--primary-color);
+            animation: floatUp 4s linear infinite;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                bottom: -100px;
+                transform: translateX(0);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateX(20px);
+            }
+            75% {
+                opacity: 0.6;
+                transform: translateX(-20px);
+            }
+            100% {
+                opacity: 0;
+                bottom: 100%;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .quote {
+                font-size: 1.2rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .milestone {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                left: 0 !important;
+            }
+            
+            .milestone::after {
+                left: 18px !important;
+                right: auto !important;
+            }
+            
+            .quote-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .answer-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .proposal-message {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>A Special Question for Natalia <i class='bx bxs-heart heart-animation'></i></h1>
+            <p>Our journey together has been nothing short of magical. I've created this to celebrate what we share and to ask you something important.</p>
+        </div>
+        
+        <!-- Our Story Section -->
+        <div class="our-story">
+            <h2>Our Journey <i class='bx bxs-heart-circle' style="color: var(--dark-pink);"></i></h2>
+            
+            <div class="timeline">
+                <div class="milestone left">
+                    <div class="milestone-title">
+                        <i class='bx bxs-joystick'></i>
+                        PUBG Mobile: Where It All Began
+                    </div>
+                    <div class="milestone-content">
+                        <p>Who would have thought a battle royale game would lead to something so special? Our paths crossed in the virtual battlefield, but what we found was far from conflict - it was the beginning of a beautiful connection.</p>
+                    </div>
+                </div>
+                
+                <div class="milestone right">
+                    <div class="milestone-title">
+                        <i class='bx bxl-instagram'></i>
+                        Instagram: Getting to Know You
+                    </div>
+                    <div class="milestone-content">
+                        <p>When we exchanged Instagram IDs, I was nervous but excited. Each message, each photo, each story we shared helped us discover more about each other. What started as casual conversations soon turned into something I looked forward to every day.</p>
+                    </div>
+                </div>
+                
+                <div class="milestone left">
+                    <div class="milestone-title">
+                        <i class='bx bxl-whatsapp'></i>
+                        WhatsApp: Our Daily Connection
+                    </div>
+                    <div class="milestone-content">
+                        <p>Moving to WhatsApp meant we were becoming a part of each other's daily lives. Good morning messages, late night conversations, sharing our dreams and fears - each message brought us closer, weaving a tapestry of moments I cherish deeply.</p>
+                    </div>
+                </div>
+                
+                <div class="milestone right">
+                    <div class="milestone-title">
+                        <i class='bx bxs-heart'></i>
+                        Growing Together
+                    </div>
+                    <div class="milestone-content">
+                        <p>With each passing day, our bond has only grown stronger. The way you understand me, support me, make me laugh - you've brought colors to my life I never knew existed. Every moment with you feels like a gift I want to treasure forever.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Love Quotes Section -->
+        <div class="love-quotes">
+            <h2>Words of Love <i class='bx bxs-quote-alt-left' style="color: var(--dark-pink);"></i></h2>
+            
+            <div class="quote-container">
+                <p class="quote" id="quote">In a world full of uncertainty, you are my constant. Every moment with you makes me realize how lucky I am to have found you.</p>
+            </div>
+            
+            <div style="text-align: center;">
+                <button class="quote-btn" id="generateQuote">
+                    <i class='bx bx-refresh'></i> New Quote
+                </button>
+            </div>
+            
+            <div class="quote-actions">
+                <button class="quote-action-btn" id="copyQuote">
+                    <i class='bx bx-copy'></i> Copy Quote
+                </button>
+                <button class="quote-action-btn" id="sendToAryan">
+                    <i class='bx bxl-instagram'></i> Send to Aryan
+                </button>
+                <button class="quote-action-btn" id="sendToNatalia">
+                    <i class='bx bxl-instagram'></i> Send to Natalia
+                </button>
+                <button class="quote-action-btn" id="shareQuote">
+                    <i class='bx bx-share-alt'></i> Share
+                </button>
+            </div>
+        </div>
+        
+        <!-- Proposal Section -->
+        <div class="proposal">
+            <p class="proposal-message">Natalia, you make my heart smile in ways I never thought possible...</p>
+            
+            <button class="proposal-btn" id="proposalBtn">
+                <i class='bx bxs-heart'></i> Click to See My Question
+            </button>
+            
+            <div class="hidden" id="proposalQuestion">
+                <h2 style="font-size: 2.8rem; margin: 30px 0;">Will You Be Mine Forever?</h2>
+                
+                <div class="answer-buttons" id="answerButtons">
+                    <button class="answer-btn yes-btn" id="yesBtn">Yes, I Will! <i class='bx bxs-heart'></i></button>
+                    <button class="answer-btn no-btn" id="noBtn">Let Me Think...</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-message">Made with Love by Aryan ❤️</p>
+        </div>
+    </div>
+    
+    <!-- Celebration Modal -->
+    <div class="celebration" id="celebration">
+        <div class="floating-hearts" id="floatingHearts"></div>
+        <div class="celebration-content">
+            <h2>She Said YES! <i class='bx bxs-heart heart-animation'></i></h2>
+            <p style="font-size: 1.5rem; margin-bottom: 30px;">Thank you for making me the happiest person alive!</p>
+            <div>
+                <img src="/api/placeholder/400/300" alt="Romantic couple illustration">
+            </div>
+            <button class="quote-btn" style="margin-top: 30px;" id="closeCelebration">
+                Continue Our Journey <i class='bx bx-right-arrow-alt'></i>
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        // Love quotes array
+        const loveQuotes = [
+            "In a world full of uncertainty, you are my constant. Every moment with you makes me realize how lucky I am to have found you.",
+            "Meeting you was fate, becoming your friend was a choice, but falling in love with you was beyond my control.",
+            "You're the missing piece I never knew I needed, the answer to questions I never thought to ask.",
+            "With you, I've learned that home isn't a place – it's a person. And you feel like home to me.",
+            "Every love story is beautiful, but ours is my favorite.",
+            "I fell in love with the way you touch my mind before you even touched my skin.",
+            "You make my heart smile in ways I never thought possible.",
+            "I want to be your favorite hello and your hardest goodbye.",
+            "The best thing to hold onto in life is each other.",
+            "I love you not only for what you are, but for what I am when I am with you.",
+            "If I know what love is, it is because of you.",
+            "I choose you. And I'll choose you over and over. Without pause, without a doubt, in a heartbeat. I'll keep choosing you.",
+            "When I saw you I fell in love, and you smiled because you knew.",
+            "In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine.",
+            "From the moment our paths crossed in that PUBG game, I knew something special was beginning.",
+            "Every message we exchange reminds me of how perfectly we fit together."
+        ];
+        
+        // DOM Elements
+        const quoteElement = document.getElementById('quote');
+        const generateQuoteBtn = document.getElementById('generateQuote');
+        const copyQuoteBtn = document.getElementById('copyQuote');
+        const sendToAryanBtn = document.getElementById('sendToAryan');
+        const sendToNataliaBtn = document.getElementById('sendToNatalia');
+        const shareQuoteBtn = document.getElementById('shareQuote');
+        const proposalBtn = document.getElementById('proposalBtn');
+        const proposalQuestion = document.getElementById('proposalQuestion');
+        const answerButtons = document.getElementById('answerButtons');
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const celebration = document.getElementById('celebration');
+        const closeCelebration = document.getElementById('closeCelebration');
+        const floatingHearts = document.getElementById('floatingHearts');
+        
+        // Generate a random quote
+        function generateRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * loveQuotes.length);
+            quoteElement.textContent = loveQuotes[randomIndex];
+            
+            // Add fade animation
+            quoteElement.style.opacity = 0;
+            setTimeout(() => {
+                quoteElement.style.opacity = 1;
+            }, 100);
+        }
+        
+        // Copy quote to clipboard
+        function copyQuote() {
+            const text = quoteElement.textContent;
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    showToast('Quote copied to clipboard!');
+                })
+                .catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
+        }
+        
+        // Show a simple toast notification
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.textContent = message;
+            toast.style.position = 'fixed';
+            toast.style.bottom = '20px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+            toast.style.color = 'white';
+            toast.style.padding = '10px 20px';
+            toast.style.borderRadius = '20px';
+            toast.style.zIndex = '1000';
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 500);
+            }, 2000);
+        }
+        
+        // Create floating hearts for celebration
+        function createFloatingHearts() {
+            floatingHearts.innerHTML = '';
+            const heartColors = ['#ff6b81', '#ff4757', '#ffd700', '#ff365f', '#ffffff'];
+            
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '<i class="bx bxs-heart"></i>';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heart.style.opacity = Math.random() * 0.7 + 0.3;
+                heart.style.fontSize = (Math.random() * 30 + 10) + 'px';
+                heart.style.color = heartColors[Math.floor(Math.random() * heartColors.length)];
+                floatingHearts.appendChild(heart);
+            }
+        }
+        
+        // Event Listeners
+        generateQuoteBtn.addEventListener('click', generateRandomQuote);
+        
+        copyQuoteBtn.addEventListener('click', copyQuote);
+        
+        sendToAryanBtn.addEventListener('click', () => {
+            window.open('https://instagram.com/aryan__bot', '_blank');
+        });
+        
+        sendToNataliaBtn.addEventListener('click', () => {
+            window.open('https://instagram.com/xylaa_561', '_blank');
+        });
+        
+        shareQuoteBtn.addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'A Special Quote',
+                    text: quoteElement.textContent,
+                })
+                .catch(console.error);
+            } else {
+                copyQuote();
+                showToast('No share options available. Quote copied instead!');
+            }
+        });
+        
+        // Proposal functionality
+        proposalBtn.addEventListener('click', () => {
+            proposalBtn.classList.add('hidden');
+            proposalQuestion.classList.remove('hidden');
+            setTimeout(() => {
+                answerButtons.style.opacity = 1;
+            }, 1000);
+        });
+        
+        // Handle Yes button
+        yesBtn.addEventListener('click', () => {
+            createFloatingHearts();
+            celebration.classList.add('active');
+        });
+        
+        // Handle No button - it runs away
+        noBtn.addEventListener('mouseover', function() {
+            const maxX = window.innerWidth - this.clientWidth;
+            const maxY = window.innerHeight - this.clientHeight;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            this.style.position = 'absolute';
+            this.style.left = randomX + 'px';
+            this.style.top = randomY + 'px';
+        });
+        
+        // Close celebration
+        closeCelebration.addEventListener('click', () => {
+            celebration.classList.remove('active');
+        });
+        
+        // Initialize with a random quote
+        window.addEventListener('DOMContentLoaded', () => {
+            generateRandomQuote();
+        });
+    </script>
+</body>
+</html>
